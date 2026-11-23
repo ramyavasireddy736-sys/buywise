@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="500" viewBox="0 0 400 500">
+  <defs>
+    <linearGradient id="body" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#777d8c"/>
+      <stop offset="100%" stop-color="#292d38"/>
+    </linearGradient>
+    <linearGradient id="screen" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#b9c5d8"/>
+      <stop offset="50%" stop-color="#536d91"/>
+      <stop offset="100%" stop-color="#172b4b"/>
+    </linearGradient>
+  </defs>
+  <rect width="400" height="500" rx="24" fill="#f4f5f8"/>
+  <rect x="116" y="42" width="168" height="416" rx="30" fill="url(#body)" stroke="#171a21" stroke-width="4"/>
+  <rect x="124" y="51" width="152" height="398" rx="24" fill="url(#screen)"/>
+  <path d="M125 330 Q190 220 275 270 L275 425 Q200 475 125 400Z" fill="#d5ddeb" opacity=".25"/>
+  <path d="M125 220 Q205 120 275 180 L275 290 Q190 260 125 350Z" fill="#91a8c6" opacity=".4"/>
+  <rect x="169" y="59" width="62" height="17" rx="9" fill="#11151d"/>
+  <circle cx="220" cy="67" r="4" fill="#29384d"/>
+  <g fill="#252a34" stroke="#9da4b1" stroke-width="2">
+    <circle cx="150" cy="100" r="17"/>
+    <circle cx="150" cy="140" r="17"/>
+    <circle cx="190" cy="100" r="17"/>
+  </g>
+  <g fill="#71849e">
+    <circle cx="150" cy="100" r="10"/>
+    <circle cx="150" cy="140" r="10"/>
+    <circle cx="190" cy="100" r="10"/>
+  </g>
+  <circle cx="190" cy="140" r="5" fill="#d8d9d4"/>
+  <text x="200" y="480" text-anchor="middle" font-family="Arial" font-size="15" fill="#424b5b">iPhone 15 Pro</text>
+</svg>
