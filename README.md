@@ -25,13 +25,11 @@ Open the Vite URL printed in the terminal (usually http://localhost:5173).
 
 The API runs at http://localhost:4000. The SQLite database is created automatically at
 `server/data/buywise.db` and seeded with clearly labelled demonstration products/prices.
-
 ## Demo admin
-A demo admin account is seeded:
-- Email: `admin@buywise.demo`
-- Password: `BuyWiseAdmin123!`
 
-Change this password and `JWT_SECRET` before using this outside local development.
+A demo admin account is created automatically for local development.
+
+For security reasons, demo login credentials are not published in this repository.
 Create a `.env` file in `server/` based on `.env.example`.
 
 ## Important data notes
