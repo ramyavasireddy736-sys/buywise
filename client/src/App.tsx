@@ -63,7 +63,7 @@ useEffect(() => {
   try {
     const detail = await fetch(`${API}/products/${p.id}`)
       .then(r => r.json());
-    setSelected(detail.detail || p);
+   setSelected(detail.product || detail.detail || detail);
   } catch {
     setSelected(p);
   }
