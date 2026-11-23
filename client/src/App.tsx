@@ -1,7 +1,9 @@
 import { useEffect, useMemo, useState } from "react";
 import { Search, ShoppingBag, Heart, ArrowRight, ArrowUpRight, SlidersHorizontal, Bell, UserRound, Menu, X, Check, Tag, ShieldCheck, TrendingDown, Sparkles, Laptop, Smartphone, Headphones, Watch, Home as HomeIcon, ChevronRight, LogOut, Trash2 } from "lucide-react";
 import { Area, AreaChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
-const API = "http://localhost:4000/api";type Product = {id:number;name:string;brand:string;category:string;description:string;image:string;lowestPrice:number;prices?:Price[];specs?:Record<string,string>};
+const API = import.meta.env.DEV
+  ? "http://localhost:4000/api"
+  : "https://buywise-api-mk8o.onrender.com/api";type Product = {id:number;name:string;brand:string;category:string;description:string;image:string;lowestPrice:number;prices?:Price[];specs?:Record<string,string>};
 type Price = {id:number;retailer:string;amount:number;availability:string;searchUrl:string;isDemo:boolean};
 type User = {id:number;name:string;email:string;role:string};
 const money = (n:number) => new Intl.NumberFormat("en-IN",{style:"currency",currency:"INR",maximumFractionDigits:0}).format(n);
