@@ -1,8 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { Search, ShoppingBag, Heart, ArrowRight, ArrowUpRight, SlidersHorizontal, Bell, UserRound, Menu, X, Check, Tag, ShieldCheck, TrendingDown, Sparkles, Laptop, Smartphone, Headphones, Watch, Home as HomeIcon, ChevronRight, LogOut, Trash2 } from "lucide-react";
 import { Area, AreaChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
-
-const API = "https://buywise-api-mk8o.onrender.com/api";type Product = {id:number;name:string;brand:string;category:string;description:string;image:string;lowestPrice:number;prices?:Price[];specs?:Record<string,string>};
+const API = "http://localhost:4000/api";type Product = {id:number;name:string;brand:string;category:string;description:string;image:string;lowestPrice:number;prices?:Price[];specs?:Record<string,string>};
 type Price = {id:number;retailer:string;amount:number;availability:string;searchUrl:string;isDemo:boolean};
 type User = {id:number;name:string;email:string;role:string};
 const money = (n:number) => new Intl.NumberFormat("en-IN",{style:"currency",currency:"INR",maximumFractionDigits:0}).format(n);
@@ -86,8 +85,10 @@ useEffect(() => {
    try{const r=await fetch(`${API}/alerts`,{method:"POST",headers:headers(),body:JSON.stringify({productId:selected.id,targetPrice:Number(target)})});const d=await r.json();if(!r.ok)throw new Error(d.error);await loadAccount();setModal(null);setTarget("");notify("Price alert saved. Monitoring requires a live price feed.");}catch(e:any){notify(e.message||"Could not save alert.");}
  }
  async function deleteAlert(id:number){await fetch(`${API}/alerts/${id}`,{method:"DELETE",headers:headers()});await loadAccount();notify("Alert deleted.");}
- const visible=useMemo(()=>products,[products]);
- const lowest=(p:Product)=>p.prices?.length?Math.min(...p.prices.map(x=>x.amount)):p.lowestPrice;
+const visible = useMemo(
+  () => products.filter(p => category === "All" || p.category === category),
+  [products, category]
+); const lowest=(p:Product)=>p.prices?.length?Math.min(...p.prices.map(x=>x.amount)):p.lowestPrice;
  const logout=()=>{localStorage.removeItem("bw_token");setToken("");setUser(null);setWishlist([]);setAlerts([]);notify("Signed out.");};
 const goHome = () => {
   if (window.history.state?.view === "product") {
@@ -155,6 +156,8 @@ const goHome = () => {
       <button onClick={goHome}>Home</button>
       {categories.slice(1).map(c => (
         <button key={c} onClick={() => {
+            setQuery("");
+
           setCategory(c);
           setSelected(null);
           document.querySelector(".products-section")?.scrollIntoView({
@@ -407,8 +410,8 @@ const goHome = () => {
           className={`premium-category-card ${item.tone}`}
           key={item.name}
           onClick={() => {
-            setCategory(item.name);
-            setSelected(null);
+              setQuery("");
+setCategory(item.name);            setSelected(null);
             document.querySelector(".products-section")?.scrollIntoView({
               behavior: "smooth"
             });
