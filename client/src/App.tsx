@@ -9,7 +9,7 @@ const money = (n:number) => new Intl.NumberFormat("en-IN",{style:"currency",curr
 const categories = ["All","Smartphones","Laptops","Electronics","Fashion","Home Appliances","Audio"];
 const categoryIcons = [ShoppingBag,Smartphone,Laptop,Headphones,Watch,HomeIcon];
 const fallbackProducts:Product[] = [
- {id:1,name:"iPhone 15 Pro (128GB)",brand:"Apple",category:"Smartphones",description:"Premium smartphone with A17 Pro chip, titanium design and advanced camera system.",image:"https://images.unsplash.com/photo-1696440991900-7f5b7f9a4d9c?auto=format&fit=crop&w=900&q=85",lowestPrice:108999},
+ {id:1,name:"iPhone 15 Pro (128GB)",brand:"Apple",category:"Smartphones",description:"Premium smartphone with A17 Pro chip, titanium design and advanced camera system.",image:"/product-images/iphone-15-pro.png",lowestPrice:108999},
  {id:2,name:"Galaxy S24 (256GB)",brand:"Samsung",category:"Smartphones",description:"Flagship Android smartphone with a bright display and versatile cameras.",image:"https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?auto=format&fit=crop&w=900&q=85",lowestPrice:64999},
  {id:3,name:"MacBook Air M3 (13-inch)",brand:"Apple",category:"Laptops",description:"Lightweight laptop with Apple silicon, long battery life and a vivid display.",image:"https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=900&q=85",lowestPrice:99900},
  {id:4,name:"Sony WH-1000XM5",brand:"Sony",category:"Audio",description:"Wireless noise-cancelling headphones with immersive sound.",image:"https://images.unsplash.com/photo-1546435770-a3e426bf472b?auto=format&fit=crop&w=900&q=85",lowestPrice:24999}

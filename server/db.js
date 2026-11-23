@@ -74,7 +74,7 @@ if (count === 0) {
   retailers.forEach(r => addRetailer.run(...r));
 
   const products = [
-    ["iPhone 15 Pro (128GB)", "Apple", "Smartphones", "Premium smartphone with A17 Pro chip, titanium design and advanced camera system.", "https://images.unsplash.com/photo-1696440991900-7f5b7f9a4d9c?auto=format&fit=crop&w=900&q=85", JSON.stringify({"Display":"6.1-inch OLED","Storage":"128GB","Chip":"A17 Pro","Camera":"48MP main camera"})],
+    ["iPhone 15 Pro (128GB)", "Apple", "Smartphones", "Premium smartphone with A17 Pro chip, titanium design and advanced camera system.", "/product-images/iphone-15-pro.png", JSON.stringify({"Display":"6.1-inch OLED","Storage":"128GB","Chip":"A17 Pro","Camera":"48MP main camera"})],
     ["Galaxy S24 (256GB)", "Samsung", "Smartphones", "Flagship Android smartphone with a bright display and versatile cameras.", "https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?auto=format&fit=crop&w=900&q=85", JSON.stringify({"Display":"6.2-inch AMOLED","Storage":"256GB","Processor":"Snapdragon 8 Gen 3","Camera":"50MP main camera"})],
     ["MacBook Air M3 (13-inch)", "Apple", "Laptops", "Lightweight laptop with Apple silicon, long battery life and a vivid display.", "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=900&q=85", JSON.stringify({"Display":"13.6-inch Liquid Retina","Chip":"Apple M3","Memory":"8GB","Storage":"256GB SSD"})],
     ["Sony WH-1000XM5", "Sony", "Audio", "Wireless noise-cancelling headphones with immersive sound.", "https://images.unsplash.com/photo-1546435770-a3e426bf472b?auto=format&fit=crop&w=900&q=85", JSON.stringify({"Type":"Wireless headphones","Noise cancellation":"Active","Battery":"Up to 30 hours"})],

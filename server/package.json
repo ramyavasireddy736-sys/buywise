@@ -4,7 +4,7 @@
   "type": "module",
   "scripts": {
     "dev": "node --watch index.js",
-    "start": "node index.js"
+    "start": "node fix-product-images.js && node index.js"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
