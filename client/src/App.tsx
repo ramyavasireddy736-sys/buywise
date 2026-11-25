@@ -28,10 +28,62 @@ export default function App(){
  const [notice,setNotice]=useState("All retailer prices shown in this starter are demonstration data, not live offers.");
  const headers=()=>({ "Content-Type":"application/json", ...(token?{Authorization:`Bearer ${token}`}:{}) });
  const notify=(s:string)=>{setToast(s);setTimeout(()=>setToast(""),2600)};
- async function loadProducts(){
-   try {const p=await fetch(`${API}/products?q=${encodeURIComponent(query)}&category=${encodeURIComponent(category==="All"?"":category)}&sort=${sort}`).then(r=>r.json()); if(Array.isArray(p))setProducts(p);}
-   catch {setProducts(fallbackProducts);}
- }
+ 
+async function loadProducts(signal?: AbortSignal) {
+  try {
+    const response = await fetch(
+      `${API}/products?q=${encodeURIComponent(query)}&category=${encodeURIComponent(category === "All" ? "" : category)}&sort=${sort}`,
+      { signal }
+    );
+
+    if (!response.ok) {
+      throw new Error("Product request failed");
+    }
+
+    const data = await response.json();
+
+    const productList = Array.isArray(data)
+      ? data
+      : Array.isArray(data.products)
+      ? data.products
+      : null;
+
+    if (!productList) {
+      throw new Error("Invalid product response");
+    }
+
+    if (productList.length > 0) {
+      setProducts(productList);
+    } else {
+      const searchText = query.trim().toLowerCase();
+
+      setProducts(
+        fallbackProducts.filter(p =>
+          (category === "All" || p.category === category) &&
+          (!searchText ||
+            `${p.name} ${p.brand} ${p.category} ${p.description}`
+              .toLowerCase().includes(searchText))
+        )
+      );
+    }
+  } catch (error) {
+    if (signal?.aborted) return;
+
+    console.error("Product loading failed:", error);
+
+    const searchText = query.trim().toLowerCase();
+
+    setProducts(
+      fallbackProducts.filter(p =>
+        (category === "All" || p.category === category) &&
+        (!searchText ||
+          `${p.name} ${p.brand} ${p.category} ${p.description}`
+            .toLowerCase().includes(searchText))
+      )
+    );
+  }
+}
+
  async function loadAccount(){
    if(!token)return;
    try {
@@ -40,7 +92,13 @@ export default function App(){
      setUser(await me.json()); setWishlist((await w.json()).map((x:Product)=>x.id)); setAlerts(await a.json());
    }catch{}
  }
- useEffect(()=>{loadProducts();},[query,category,sort]);
+useEffect(() => {
+  const controller = new AbortController();
+
+  loadProducts(controller.signal);
+
+  return () => controller.abort();
+}, [query, category, sort]);
  useEffect(()=>{loadAccount();},[token]);
  useEffect(() => {
   const handlePopState = () => {
